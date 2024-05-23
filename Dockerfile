@@ -5,7 +5,7 @@ WORKDIR /app
 
 # install dependency
 RUN apt update
-RUN apt install -y libxml2-dev libxslt-dev python-dev
+RUN apt install -y libxml2-dev libxslt-dev python3-dev
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
