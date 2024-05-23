@@ -3,6 +3,10 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# install dependency
+RUN apt update
+RUN apt install -y libxml2-dev libxslt-dev python-dev
+
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
