@@ -1,5 +1,5 @@
 from flask import Blueprint, request, current_app
-
+import trafilatura
 common_api = Blueprint("common_api", __name__)
 
 
@@ -33,3 +33,45 @@ def entry_status():
         "code": 200,
         "docs": f"{request.url_root}apidocs"
     }
+
+
+@common_api.post("/extract")
+def extract():
+    # json api
+    """
+    extract api by trafilatura
+    ---
+    tags:
+        -   common
+    parameters:
+        -   in: body
+            name: body
+            required: true
+            schema:
+                name: ExtractRequest
+                type: object
+                properties:
+                    url:
+                        type: string
+                        description: url to extract
+                    raw_html:
+                        type: string
+                        description: raw html to extract  
+    responses:
+        200:
+            description: extract response
+            schema:
+                name: ExtractResponse
+                type: object
+                properties:
+                    text:
+                        type: string
+    """
+    input = request.get_json()
+    html = ''
+    if 'raw_html' in input:
+        html = input['raw_html']
+    else:
+        html = trafilatura.fetch_url(input['url'])
+    article = trafilatura.extract(html)
+    return {"text": article}

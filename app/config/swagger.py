@@ -1,8 +1,8 @@
 
 swagger_config = {
-    "title": "Flask Web Service",
-    "description": "Out-of-Box flask web service",
-    "version": "0.0.1-alpha",
+    "title": "Goose3 Rest API",
+    "description": "Out-of-Box Goose3 Rest API",
+    "version": "0.0.1",
     "termsOfService": "",
     "uiversion": 3
 }
