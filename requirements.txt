@@ -3,7 +3,7 @@ Babel==2.15.0
 beautifulsoup4==4.12.3
 blinker==1.8.2
 certifi==2024.2.2
-charset-normalizer==3.3.2
+charset-normalizer==3.4.0
 click==8.1.7
 colorama==0.4.6
 courlan==1.1.0
