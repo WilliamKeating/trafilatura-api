@@ -1,4 +1,4 @@
-from os import getenv
+from os import getenv, environ
 from flask import Flask, request, jsonify
 from .api import mount_routes
 from .config.swagger import swagger_config
@@ -6,6 +6,10 @@ from .error import set_error_handler
 from .service.swagger import setup_swagger
 
 app = Flask(__name__)
+
+# Load environment variables from a .env file if present
+from dotenv import load_dotenv
+load_dotenv()
 
 with app.app_context():
     setup_swagger()
