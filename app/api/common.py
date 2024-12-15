@@ -106,16 +106,7 @@ def extract():
     input = request.get_json()
     html = input.get('raw_html', '') or trafilatura.fetch_url(input['url'])
     output_options = input.get('output_options', {})
-    extract_params = {
-        'include_comments': output_options.get('include_comments', True),
-        'include_tables': output_options.get('include_tables', True),
-        'include_links': output_options.get('include_links', False),
-        'include_formatting': output_options.get('include_formatting', False),
-        'include_images': output_options.get('include_images', False),
-        'output_format': output_options.get('output_format', 'txt'),
-        'with_metadata': output_options.get('with_metadata', False),
-        'favor_precision': output_options.get('favor_precision', False),
-        'favor_recall': output_options.get('favor_recall', False),
-    }
+    allowed_params = ['include_comments', 'include_tables', 'include_links', 'include_formatting', 'include_images', 'output_format', 'with_metadata', 'favor_precision', 'favor_recall']
+    extract_params = {param: output_options[param] for param in allowed_params if param in output_options}
     article = trafilatura.extract(html, **extract_params)
     return {"output": article}
